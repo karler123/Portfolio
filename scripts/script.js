@@ -43,18 +43,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function showSuccessAlertAndRedirect(message, delay = 3000, redirectUrl = "/") {
   const alertBox = document.getElementById("success-alert");
-  if (!alertBox) return;
+  if (!alertBox) {
+    console.warn("Alert box not found.");
+    return;
+  }
 
   alertBox.textContent = message;
   alertBox.style.display = "block";
+  alertBox.style.opacity = "1";
 
-  // Auto-hide alert
+  // Hide the alert after some time
   setTimeout(() => {
     alertBox.style.opacity = "0";
-  }, delay - 500);
+  }, delay - 1000); // Fade out before redirect
 
   // Redirect after delay
   setTimeout(() => {
     window.location.href = redirectUrl;
   }, delay);
 }
+
