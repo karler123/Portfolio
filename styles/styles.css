@@ -289,4 +289,26 @@ footer{
     .herodesc{
         order: 2;
     }
+
+      .contact-form {
+    flex-direction: column;
+  }
+
+  .contact-info {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+  }
+
+  .form-name {
+    /* display: flex; */
+    flex-direction: column;
+  }
+  .form-submit{
+    /* align-items: center; */
+    align-self: center;
+  }
+  form{
+    width: 100%;
+  }
 }
