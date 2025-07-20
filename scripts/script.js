@@ -41,25 +41,44 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function showSuccessAlertAndRedirect(message, delay = 3000, redirectUrl = "/") {
-  const alertBox = document.getElementById("success-alert");
-  if (!alertBox) {
-    console.warn("Alert box not found.");
-    return;
-  }
+function showSuccessAlertAndRedirect(message, delay = 4000, redirectUrl = "/") {
+  // Check if an alert already exists and remove it
+  const existing = document.getElementById("success-alert");
+  if (existing) existing.remove();
 
+  // Create alert div
+  const alertBox = document.createElement("div");
+  alertBox.id = "success-alert";
   alertBox.textContent = message;
-  alertBox.style.display = "block";
-  alertBox.style.opacity = "1";
 
-  // Hide the alert after some time
+  // Style it
+  Object.assign(alertBox.style, {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "16px 24px",
+    borderRadius: "8px",
+    zIndex: "9999",
+    fontFamily: "sans-serif",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    opacity: "1",
+    transition: "opacity 0.5s ease",
+  });
+
+  // Add to body
+  document.body.appendChild(alertBox);
+
+  // Hide after a short time
   setTimeout(() => {
     alertBox.style.opacity = "0";
-  }, delay - 1000); // Fade out before redirect
+  }, delay - 1000); // fade out early
 
-  // Redirect after delay
+  // Redirect after full delay
   setTimeout(() => {
     window.location.href = redirectUrl;
   }, delay);
 }
+
 
